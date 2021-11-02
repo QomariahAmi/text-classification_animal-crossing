@@ -14,7 +14,7 @@ from nltk.tokenize import word_tokenize
 import nltk
 #from fastapi.responses import HTMLResponse
 #from fastapi.templating import Jinja2Templates
-nltk.download('punkt')
+#nltk.download('punkt')
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
