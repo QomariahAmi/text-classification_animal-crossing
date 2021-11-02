@@ -1,6 +1,6 @@
-from pydantic import BaseModel
+#from pydantic import BaseModel
 #from fastapi.staticfiles import StaticFiles
-from pydantic.main import BaseModel
+#from pydantic.main import BaseModel
 import uvicorn
 from fastapi import Request, FastAPI
 from nltk.corpus import stopwords
@@ -23,8 +23,8 @@ model = tf.keras.models.load_model(
     'model_new_version/content/model')
 
 
-class get_sentiment(BaseModel):
-    text: str
+#class get_sentiment(BaseModel):
+#    text: str
 
 
 # Loading tokenizer
@@ -76,12 +76,12 @@ async def home():
 
 
 @app.post("/predict")
-def predict(gs: get_sentiment):
+def predict(text: str):
     """
     A simple function that receive a review content and predict the sentiment of the content.
     """
 # Apply the cleaning data
-    cleaned_text = data_cleaning(gs.text)
+    cleaned_text = data_cleaning(text)
 
 # Perform prediction
     prediction = model.predict([cleaned_text])
@@ -93,6 +93,6 @@ def predict(gs: get_sentiment):
     else:
         prediction = "Negatif (Produk tidak direkomendasikan)"
 
-    return {"review": gs.text, "prediction": prediction}
+    return {"review": text, "prediction": prediction}
 
 # return templates.TemplateResponse("result.html", {"request": request})
