@@ -29,7 +29,7 @@ class get_sentiment(BaseModel):
 
 # Loading tokenizer
 BertTokenizer = bert.bert_tokenization.FullTokenizer
-bert_layer = hub.KerasLayer('bert_multi_cased_L-12_H-768_A-12_4.tar/4',
+bert_layer = hub.KerasLayer("https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/1",
                             trainable=False)
 vocabulary_file = bert_layer.resolved_object.vocab_file.asset_path.numpy()
 to_lower_case = bert_layer.resolved_object.do_lower_case.numpy()
